@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather Forecast</title>
+</head>
+<body>
+	<img src="latte-image.png" id="myimage">
+	<p id="output">Default Text</p>
+	<input id="user_number">
+	<button onclick="update_image()">Submit</button>
+	<script type="text/javascript">
+		document.getElementById('output').style.fontSize = '20px';
+		document.getElementById('output').style.color = 'red';
+		function update_user() {
+			// body...
+			user_number=document.getElementById("user_number").value;
+			httpRequest = new XMLHttpRequest();
+			httpRequest.open("GET","https://reqres.in/api/users/"+user_number);
+			httpRequest.send();
+
+			httpRequest.onreadystatechange = function(){
+				if(this.readyState==4 && this.status==200){
+					user_data=JSON.parse(this.responseText);
+					document.getElementById("output").innerHTML = user_data.data.first_name;
+				}
+			}
+		}
+		function update_image(){
+		document.getElementById('myimage').src='mocha-image.png';
+}
+	</script
+</body>
+</html>
